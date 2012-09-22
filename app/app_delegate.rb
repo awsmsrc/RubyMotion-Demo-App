@@ -1,6 +1,5 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
-    puts "On Load: #{App::Persistence['tweets']}"
     initialize_view_controllers
     create_window
     true
