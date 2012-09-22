@@ -1,5 +1,4 @@
 class SearchView < UIView
-
   attr_accessor :table
 
   def initWithDelegate(delegate)
@@ -14,5 +13,4 @@ class SearchView < UIView
     this.addSubview @search_bar
     this
   end
-
 end

@@ -1,8 +1,7 @@
 class SearchViewController < UIViewController
-
   def initWithNibName(name, bundle: bundle)
     super
-    self.tabBarItem = UITabBarItem.alloc.initWithTitle("Search", image:nil, tag:1)
+    self.tabBarItem = UITabBarItem.alloc.initWithTitle('Search', image:nil, tag:1)
     self
   end
 
@@ -12,7 +11,7 @@ class SearchViewController < UIViewController
 
   def viewDidLoad
     super
-    self.title = "Search"
+    self.title = 'Search'
     @search_engine = SearchEngine.initWithDelegate(self)
   end
 
@@ -24,7 +23,7 @@ class SearchViewController < UIViewController
 
   #tableview delegate methods
   def tableView(tableView, cellForRowAtIndexPath:index)
-    @reuseIdentifier ||= "CELL_IDENTIFIER"
+    @reuseIdentifier ||= 'CELL_IDENTIFIER'
     cell = tableView.dequeueReusableCellWithIdentifier(@reuseIdentifier) || UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:@reuseIdentifier)
     cell.textLabel.text = @search_engine.tweets[index.row].text
     cell
@@ -65,5 +64,4 @@ class SearchViewController < UIViewController
     searchbar.showsCancelButton = false
     searchbar.resignFirstResponder
   end
-
 end
