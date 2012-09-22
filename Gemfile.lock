@@ -1,0 +1,22 @@
+GIT
+  remote: git://github.com/clayallsopp/Routable.git
+  revision: 64701fdd1eb5f439041b076dc721f77eeabe40ce
+  specs:
+    routable (0.0.2)
+
+GIT
+  remote: git://github.com/rubymotion/BubbleWrap.git
+  revision: 88a7c4ec1658d74da44049c03d7451664662c218
+  specs:
+    bubble-wrap (1.1.3)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bubble-wrap!
+  routable!
