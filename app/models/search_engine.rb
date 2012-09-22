@@ -1,6 +1,5 @@
 class SearchEngine
   attr_accessor :delegate, :data
-  private_class_method :new, :allocate
 
   def self.initWithDelegate(delegate)
     this = self.new
