@@ -8,5 +8,6 @@ class Favourites
   end
 
   def return_tweets_with_callback(&block)
+    block.call(self) if block
   end
 end
