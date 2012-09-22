@@ -1,6 +1,6 @@
 class SearchEngine
-
   attr_accessor :delegate, :data
+  private_class_method :new, :allocate
 
   def self.initWithDelegate(delegate)
     this = self.new
@@ -38,11 +38,4 @@ class SearchEngine
   def results
     data[:results] || {}
   end
-
-  private
-
-  def new
-    super
-  end
-
 end

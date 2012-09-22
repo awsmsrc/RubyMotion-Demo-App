@@ -1,30 +1,28 @@
 class AppDelegate
-
-  attr_accessor :router
-
   def application(application, didFinishLaunchingWithOptions:launchOptions)
     puts "On Load: #{App::Persistence['tweets']}"
-    map_urls
     initialize_view_controllers
     create_window
     true
   end
-  
-  private
 
-  def map_urls
+  def router
+    return @router if @router
     @router = Routable::Router.router
     @router.navigation_controller = UINavigationController.alloc.init
-    @router.map("search", SearchViewController)
-    @router.map("tweets/:id", TweetViewController)
+    @router.map('search', SearchViewController)
+    @router.map('tweets/:id', TweetViewController)
+    @router
   end
+  
+  private
 
   def initialize_view_controllers
     @search_controller = SearchViewController.new
     @analytics_controller = AnalyticsViewController.new
     @tab_controller = UITabBarController.alloc.initWithNibName(nil, bundle: nil)
-    @tab_controller.viewControllers = [@router.navigation_controller, @analytics_controller]
-    @router.open('search', false)
+    @tab_controller.viewControllers = [router.navigation_controller, @analytics_controller]
+    router.open('search', false)
   end
 
   def create_window
@@ -33,5 +31,4 @@ class AppDelegate
     @window.rootViewController.wantsFullScreenLayout = true
     @window.makeKeyAndVisible
   end
-
 end
