@@ -1,5 +1,5 @@
 class AppDelegate
-  def application(application, didFinishLaunchingWithOptions:launchOptions)
+  def application(application, didFinishLaunchingWithOptions:launchOptions) 
     initialize_view_controllers
     create_window
     true

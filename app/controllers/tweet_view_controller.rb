@@ -13,7 +13,7 @@ class TweetViewController < UIViewController
     self.view.backgroundColor = UIColor.underPageBackgroundColor
     @button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @button.setFrame([[30,200],[200,50]])
-    unless App::Persistence['tweets'].include? @id
+    unless Array(App::Persistence['tweets']).include? @id
       @button.setTitle("Add To Favouries", forState:UIControlStateNormal)
     else
       @button.setTitle("Remove From Favouries", forState:UIControlStateNormal)
