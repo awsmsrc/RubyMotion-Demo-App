@@ -13,7 +13,11 @@ class TweetViewController < UIViewController
     self.view.backgroundColor = UIColor.underPageBackgroundColor
     @button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @button.setFrame([[30,200],[200,50]])
-    @button.setTitle("Add To Favouries", forState:UIControlStateNormal)
+    unless App::Persistence['tweets'].include? @id
+      @button.setTitle("Add To Favouries", forState:UIControlStateNormal)
+    else
+      @button.setTitle("Remove From Favouries", forState:UIControlStateNormal)
+    end
     @button.addTarget(self, action: :add_or_remove_from_favourites, forControlEvents:UIControlEventTouchUpInside)
   end
 
@@ -22,10 +26,6 @@ class TweetViewController < UIViewController
     @label.text = tweet.text
     @label.numberOfLines = 0
     @label.sizeToFit
-    frame = @label.frame;
-    frame.size.width += 20;  
-    frame.size.height += 10;  
-    @label.frame = frame;
     self.view.addSubview @label
     self.view.addSubview @button
   end
@@ -33,17 +33,16 @@ class TweetViewController < UIViewController
   def add_or_remove_from_favourites
     tweets = App::Persistence['tweets']
     if tweets.nil?
-      puts "first tweet"
       tweets = [@id]
+      @button.setTitle("Remove from Favouries", forState:UIControlStateNormal)
     elsif !tweets.include? @id
-      puts "add tweet"
       tweets = tweets + [@id]
+      @button.setTitle("Remove from Favouries", forState:UIControlStateNormal)
     else
-      puts "remove tweet"
       tweets = tweets - [@id]
+      @button.setTitle("Add To Favouries", forState:UIControlStateNormal)
     end
     App::Persistence['tweets'] = tweets
-    puts "current: #{App::Persistence['tweets']}"
   end
 
 end
